@@ -95,8 +95,9 @@ function draw() {
   if(M===2){
     fill("#39ff14")
     text(dogName+" is: "+gameState,190,450)
-    fill("white")
+    fill("black")
     text("Name of Dog: " + dogName,10,350)
+    fill("white")
     if(lastFed>=12&&lastFed<24){
     
       text(""+dogName+" was last Fed At : "+ lastFed%12 + " PM", 30,60);
