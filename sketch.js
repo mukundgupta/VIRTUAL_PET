@@ -10,7 +10,7 @@ sadDog=loadImage("images/dogImg.png");
 happyDog=loadImage("images/dogImg1.png");
 bathroomIMG=loadImage("images/PET/Wash Room.png")
 bedroomIMG=loadImage("images/PET/Bed Room.png")
-gardenIMG=loadImage("images/PET/garden.png")
+gardenIMG=loadImage("images/PET/Garden.png")
 livingroomIMG=loadImage("images/PET/Living Room.png")
 }
 
