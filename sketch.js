@@ -1,17 +1,10 @@
 var dog, database,foodS,foodStock,fedTime,lastFed,feed,addFood,foodObj;
 var dogName;
 var M = 1;
-var currentTime;
-var changeState,readState;
-var gameState;
 
 function preload(){
 sadDog=loadImage("images/dogImg.png");
 happyDog=loadImage("images/dogImg1.png");
-bathroomIMG=loadImage("images/PET/Wash Room.png")
-bedroomIMG=loadImage("images/PET/Bed Room.png")
-gardenIMG=loadImage("images/PET/Garden.png")
-livingroomIMG=loadImage("images/PET/Living Room.png")
 }
 
 function setup() {
@@ -40,11 +33,6 @@ M=2;
   fedTime.on("value",function(data){
     lastFed=data.val();
   });
-
-  readState = database.ref('GameState')
-  readState.on("value",function(data){
-    gameState=data.val();
-  });
   
   dog=createSprite(800,200,150,150);
   dog.addImage("dog1",sadDog);
@@ -61,44 +49,14 @@ M=2;
 }
 
 function draw() {
+  background(46,139,87);
   
-  //foodObj.display();
- currentTime = hour();
- if(currentTime===lastFed+1){
-   update("Playing")
-   foodObj.garden();
- }else if(currentTime===lastFed+2){
-  update("Sleeping")
-  foodObj.bedRoom();
- }else if(currentTime>lastFed+2&&currentTime<=lastFed+4){
-   update("Bathing")
-   foodObj.washroom();
- }else{
-   update("Hungry")
-   foodObj.display();
- }
- if(gameState!=="Hungry"){
-   feed.hide();
-   addFood.hide();
-   dog.remove();
- }else{
-   feed.show();
-   addFood.show();
-   dog.addImage(sadDog)
-   background(46,139,87);
- }
  
   textSize(30);
   fill("white");
- console.log(gameState)
-
   if(M===2){
-    fill("#39ff14")
-    text(dogName+" is: "+gameState,190,450)
-    fill("black")
     text("Name of Dog: " + dogName,10,350)
-    fill("white")
-    if(lastFed>=12&&lastFed<24){
+    if(lastFed>=12){
     
       text(""+dogName+" was last Fed At : "+ lastFed%12 + " PM", 30,60);
      }else if(lastFed==0){
@@ -107,8 +65,8 @@ function draw() {
        text(""+dogName+" was Last Fed At: "+ lastFed + " AM", 30,60);
      }
   }
+  foodObj.display();
   drawSprites();
-  //console.log(mouseX,  mouseY)
 }
 
 //function to read food Stock
@@ -133,12 +91,6 @@ function addFoods(){
   foodS++;
   database.ref('/').update({
     Food:foodS
-  })
-}
-
-function update(state){
-  database.ref('/').update({
-    GameState:state
   })
 }
 

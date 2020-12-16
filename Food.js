@@ -23,16 +23,6 @@ class Food {
     return this.foodStock;
   }
 
-bedRoom(){
-  background(bedroomIMG,550,500)
-}
-garden(){
-  background(gardenIMG,550,500)
-}
-washroom(){
-  background(bathroomIMG,550,500)
-}
-
   display(){
     var x=80,y=100;
     
